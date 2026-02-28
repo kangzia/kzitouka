@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🛒 星宝农场助手</title>
+    
+    <!-- 网站描述 -->
+    <meta name="description" content="星宝农场游戏脚本购买页面，提供全自动脚本服务，支持安卓和iOS平台">
+    <meta name="keywords" content="星宝农场,奇迹农场,游戏脚本,自动化,农场助手">
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <!-- 主样式 -->
+    <style>
+        /* 基础样式 */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --gradient-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding-bottom: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* 卡片样式 */
+        .card.glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card.glass-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+        }
+        
+        .card-header.modern-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-bottom: none;
+            padding: 1.5rem;
+        }
+        
+        .card-header.modern-header h4 {
+            color: white;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .card-body {
+            padding: 2rem;
+        }
+        
+        /* 动画效果 */
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 产品介绍 */
+        .product-intro {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .product-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .product-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .product-icon {
+            font-size: 3rem;
+            animation: rotate 3s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .product-header h5 {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .product-desc {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        /* 功能网格 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .feature-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-box h6 {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .feature-list li {
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0.5rem 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* 高亮框 */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border: 2px solid rgba(102, 126, 234, 0.4);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .highlight-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+        
+        .highlight-content h6 {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .highlight-content p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+        
+        /* 价格网格 */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pricing-card.recommended {
+            border-color: rgba(255, 193, 7, 0.5);
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
+        }
+        
+        /* iOS云机卡片特殊样式 */
+        .ios-cloud-card {
+            grid-column: span 1;
+        }
+        
+        .recommended-badge {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(255, 193, 7, 0.4);
+            z-index: 1;
+        }
+        
+        .pricing-header {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .platform-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .platform-badge.android {
+            background: linear-gradient(135deg, #3ddc84, #2db872);
+            color: white;
+        }
+        
+        .platform-badge.ios {
+            background: linear-gradient(135deg, #007aff, #0051d5);
+            color: white;
+        }
+        
+        .platform-badge.cloud {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .pricing-header h5 {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .pricing-body {
+            padding: 1.5rem;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .price-row.featured {
+            border-bottom: none;
+            justify-content: center;
+        }
+        
+        .price-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+        
+        .price-value {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .price-unit {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* iOS选项样式 */
+        .ios-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .ios-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .ios-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 122, 255, 0.3);
+        }
+        
+        .option-name {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .option-price {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .pricing-features {
+            margin-top: 1rem;
+        }
+        
+        .pricing-features p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+        
+        /* 购买方式 */
+        .purchase-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .method-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .method-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .method-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .method-item h6 {
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .method-item p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0.3rem 0;
+            font-size: 0.9rem;
+        }
+        
+        /* 联系按钮容器 */
+        .contact-button-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .contact-btn {
+            min-width: 200px;
+            padding: 15px 40px !important;
+            font-size: 1.2rem !important;
+            font-weight: bold;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(52, 152, 219, 0.8);
+            }
+        }
+        
+        /* 须知列表 */
+        .notice-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .notice-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        .notice-number {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #fa709a, #fee140);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .notice-text h6 {
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        
+        .notice-text p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        /* 按钮样式 */
+        .unified-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .unified-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        
+        .intro-header {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .intro-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .intro-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* 移动端优化 */
+        @media (max-width: 768px) {
+            .product-header {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .product-icon {
+                font-size: 2.5rem;
+            }
+            
+            .product-header h5 {
+                font-size: 1.2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .highlight-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem 1rem;
+            }
+            
+            .highlight-icon {
+                font-size: 2.5rem;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            /* iOS选项移动端优化 */
+            .ios-options {
+                gap: 0.75rem;
+            }
+            
+            .ios-option {
+                padding: 0.75rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .option-name {
+                font-size: 0.95rem;
+                width: 100%;
+            }
+            
+            .option-price {
+                font-size: 1.3rem;
+                width: 100%;
+                text-align: right;
+            }
+            
+            .pricing-features {
+                margin-top: 0.75rem;
+            }
+            
+            .pricing-features p {
+                font-size: 0.9rem;
+                margin: 0.4rem 0;
+            }
+            
+            .purchase-methods {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .contact-btn {
+                width: 100%;
+                min-width: auto;
+                padding: 12px 30px !important;
+                font-size: 1.1rem !important;
+            }
+            
+            .notice-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .notice-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            /* 确保所有文字在移动端可见 */
+            .pricing-card {
+                overflow: visible;
+            }
+            
+            .pricing-header h5 {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+            
+            .price-row {
+                padding: 0.6rem 0;
+            }
+            
+            .price-value {
+                font-size: 1.5rem;
+            }
+            
+            .intro-header h2 {
+                font-size: 2rem;
+            }
+            
+            .card-body {
+                padding: 1.5rem;
+            }
+        }
+        
+        /* 白天模式优化 */
+        @media (prefers-color-scheme: light) {
+            body {
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                color: #333;
+            }
+            
+            .card.glass-effect {
+                background: rgba(255, 255, 255, 0.8);
+                border: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            
+            .card-header.modern-header h4,
+            .product-header h5,
+            .feature-box h6,
+            .highlight-content h6,
+            .pricing-header h5,
+            .method-item h6,
+            .notice-text h6 {
+                color: #2c3e50;
+            }
+            
+            .product-desc,
+            .feature-list li,
+            .highlight-content p,
+            .price-label,
+            .price-value,
+            .price-unit,
+            .option-name,
+            .option-price,
+            .pricing-features p,
+            .method-item p,
+            .notice-text p,
+            .intro-subtitle {
+                color: #495057;
+            }
+            
+            .feature-box,
+            .method-item,
+            .pricing-card {
+                background: rgba(255, 255, 255, 0.9);
+                border-color: rgba(0, 0, 0, 0.1);
+            }
+            
+            .pricing-header {
+                background: rgba(108, 117, 125, 0.1);
+            }
+            
+            .price-row {
+                border-bottom-color: rgba(0, 0, 0, 0.1);
+            }
+            
+            .ios-option {
+                background: rgba(248, 249, 250, 0.9);
+                border-color: rgba(0, 0, 0, 0.15);
+            }
+        }
+        
+        /* 页脚 */
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            color: rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .alert-info {
+            background: rgba(23, 162, 184, 0.2);
+            border: 1px solid rgba(23, 162, 184, 0.3);
+            color: #b3e0e8;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #3ddc84, #2db872);
+            border: none;
+        }
+        
+        .btn-info {
+            background: linear-gradient(135deg, #17a2b8, #117a8b);
+            border: none;
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            border: none;
+            color: #212529;
+        }
+    </style>
+</head>
+<body>
+    <!-- 主要内容 -->
+    <main>
+        <div class="container">
+            <!-- 页面标题 -->
+            <div class="intro-header fade-in-up">
+                <div class="card glass-effect neon-glow">
+                    <div class="card-header text-center">
+                        <h2 class="mb-0">🛒 星宝农场助手</h2>
+                        <p class="intro-subtitle">全自动脚本 · 解放双手 · 稳定运行</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 主要产品介绍 -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card glass-effect fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="card-header modern-header" style="background: linear-gradient(135deg, #667eea, #764ba2) !important;">
+                            <h4 class="mb-0">🎮 产品介绍</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="product-intro">
+                                <div class="product-section">
+                                    <div class="product-header">
+                                        <div class="product-icon">⭐</div>
+                                        <h5>星宝农场 & 奇迹农场脚本</h5>
+                                    </div>
+                                    <p class="product-desc">专业的自动化脚本，让你的农场自动运行，无需人工值守！</p>
+                                </div>
+                                
+                                <div class="features-grid">
+                                    <div class="feature-box">
+                                        <div class="feature-icon">🌾</div>
+                                        <h6>奇迹农场功能</h6>
+                                        <ul class="feature-list">
+                                            <li>✅ 全自动缤纷任务</li>
+                                            <li>✅ 自动幻月</li>
+                                            <li>✅ 自动孵蛋</li>
+                                            <li>✅ 自动购买商店</li>
+                                            <li>✅ 随版本更新增加功能</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="feature-box">
+                                        <div class="feature-icon">⭐</div>
+                                        <h6>星宝农场功能</h6>
+                                        <ul class="feature-list">
+                                            <li>✅ 自动炸鱼</li>
+                                            <li>✅ 自动偷菜</li>
+                                            <li>✅ 自动送礼盒</li>
+                                            <li>✅ 自动刷员工</li>
+                                            <li>✅ 随版本更新增加功能</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="highlight-box">
+                                    <div class="highlight-icon">💡</div>
+                                    <div class="highlight-content">
+                                        <h6>核心优势</h6>
+                                        <p>✨ 有无月卡都可 · 稳定无异常 · 售后回复及时</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 购买方案 -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card glass-effect fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="card-header modern-header" style="background: linear-gradient(135deg, #f093fb, #f5576c) !important;">
+                            <h4 class="mb-0">💰 购买方案</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="pricing-grid">
+                                <!-- 安卓方案 - 推荐 -->
+                                <div class="pricing-card android-card recommended">
+                                    <div class="recommended-badge">推荐</div>
+                                    <div class="pricing-header">
+                                        <div class="platform-badge android">Android</div>
+                                        <h5>ACE安卓云机方案</h5>
+                                    </div>
+                                    <div class="pricing-body">
+                                        <div class="price-row">
+                                            <span class="price-label">有月卡</span>
+                                            <span class="price-value">¥26<span class="price-unit">/月</span></span>
+                                        </div>
+                                        <div class="price-row">
+                                            <span class="price-label">无月卡</span>
+                                            <span class="price-value">¥28<span class="price-unit">/月</span></span>
+                                        </div>
+                                        <div class="price-row">
+                                            <span class="price-label">单脚本</span>
+                                            <span class="price-value">¥7<span class="price-unit">/月</span></span>
+                                        </div>
+                                        <div class="pricing-features">
+                                            <p>✅ 支持雷电模拟器</p>
+                                            <p>✅ 支持安卓10模拟器</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 苹果云手机方案 -->
+                                <div class="pricing-card ios-card ios-cloud-card">
+                                    <div class="pricing-header">
+                                        <div class="platform-badge ios">苹果</div>
+                                        <h5>苹果云手机方案</h5>
+                                    </div>
+                                    <div class="pricing-body">
+                                        <div class="ios-options">
+                                            <div class="ios-option">
+                                                <div class="option-name">无界趣连（8G8核）</div>
+                                                <div class="option-price">¥48<span class="price-unit">/月</span></div>
+                                            </div>
+                                            <div class="ios-option">
+                                                <div class="option-name">驰电云</div>
+                                                <div class="option-price">¥65<span class="price-unit">/月</span></div>
+                                            </div>
+                                            <div class="ios-option">
+                                                <div class="option-name">星星云</div>
+                                                <div class="option-price">¥70<span class="price-unit">/月</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="pricing-features">
+                                            <p>✅ 高性能配置</p>
+                                            <p>✅ 流畅稳定运行</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info mt-4">
+                                <strong>💡 提示：</strong>所有方案均包含脚本使用权限，支持模拟器和云手机多种运行方式。<br>
+                                <strong>🌟 推荐云机方案 更安心</strong><br>
+                                <strong>🔄 支持远程更新配置功能</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 购买和教程 -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card glass-effect fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="card-header modern-header" style="background: linear-gradient(135deg, #4facfe, #00f2fe) !important;">
+                            <h4 class="mb-0">💳 购买和教程</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="purchase-methods">
+                                <div class="method-item">
+                                    <div class="method-icon">📱</div>
+                                    <h6>联系作者</h6>
+                                    <p>添加作者微信: kzitouka</p>
+                                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+                                        <button class="btn btn-sm btn-primary" onclick="copyWechat()" style="text-decoration: none; min-height: 38px; display: inline-flex; align-items: center; justify-content: center;">
+                                            复制微信
+                                        </button>
+                                        <button class="btn btn-sm btn-success" onclick="copyBackupWechat()" style="text-decoration: none; min-height: 38px; display: inline-flex; align-items: center; justify-content: center;">
+                                            备用微信
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="method-item">
+                                    <div class="method-icon">💬</div>
+                                    <h6>咨询客服</h6>
+                                    <p>在线客服随时为您服务</p>
+                                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+                                        <a href="https://tool.gljlw.com/qqq/?qq=1679770283" target="_blank" class="btn btn-sm btn-success" style="text-decoration: none;">
+                                            <i class="bi bi-chat-square-text"></i> 咨询客服
+                                        </a>
+                                        <a href="https://space.bilibili.com/344596635?spm_id_from=333.788.0.0" target="_blank" class="btn btn-sm btn-info" style="text-decoration: none;">
+                                            <i class="bi bi-play-circle-fill"></i> 演示视频
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="method-item">
+                                    <div class="method-icon">🎬</div>
+                                    <h6>教程和支持</h6>
+                                    <p>获取视频与图文教程</p>
+                                    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 10px;">
+                                        <a href="https://www.yuque.com/yuqueyonghu1bj9xg/atb1sh/ieawkioki3fq9xyy?singleDoc#" target="_blank" class="btn btn-sm btn-info" style="text-decoration: none;">
+                                            <i class="bi bi-play-circle-fill"></i> 演示视频
+                                        </a>
+                                       <a href="https://www.yuque.com/yuqueyonghu1bj9xg/atb1sh/ieawkioki3fq9xyy?singleDoc#" target="_blank" class="btn btn-sm btn-info" style="text-decoration: none;">
+                                            <i class="bi bi-play-circle-fill"></i> 演示视频
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-button-container">
+                                <button onclick="copyWechat()" class="btn btn-lg btn-primary unified-btn neon-glow contact-btn">
+                                    <i class="bi bi-wechat"></i> 添加微信购买
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 购买须知 -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="card glass-effect fade-in-up" style="animation-delay: 0.4s;">
+                        <div class="card-header modern-header" style="background: linear-gradient(135deg, #fa709a, #fee140) !important;">
+                            <h4 class="mb-0">📢 购买须知</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="notice-list">
+                                <div class="notice-item">
+                                    <div class="notice-number">1</div>
+                                    <div class="notice-text">
+                                        <h6>联系方式</h6>
+                                        <p>请联系微信: kzitouka<br>备用微信: xiaoyucq888</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="notice-item">
+                                    <div class="notice-number">2</div>
+                                    <div class="notice-text">
+                                        <h6>使用说明</h6>
+                                        <p>购买后会提供详细的使用教程和技术支持</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="notice-item">
+                                    <div class="notice-number">3</div>
+                                    <div class="notice-text">
+                                        <h6>售后服务</h6>
+                                        <p>提供完善的售后服务，遇到问题随时联系</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="notice-item">
+                                    <div class="notice-number">4</div>
+                                    <div class="notice-text">
+                                        <h6>更新维护</h6>
+                                        <p>脚本持续更新维护，确保稳定运行</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 返回按钮 -->
+            <div class="row mt-4 mb-4">
+                <div class="col-12 text-center">
+                    <button onclick="location.href='#home'" class="btn btn-lg btn-primary unified-btn neon-glow fade-in-up" style="animation-delay: 0.5s;">
+                        🏠 返回主页
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 奇迹农场数据接口服务器 | 服务稳定运行中</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // 复制微信号功能
+        function copyWechat() {
+            var wechat = 'kzitouka';
+            var tempInput = document.createElement('input');
+            tempInput.value = wechat;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
+            try {
+                document.execCommand('copy');
+                alert('✅ 微信号已复制: ' + wechat);
+            } catch (err) {
+                alert('❌ 复制失败，请手动复制: ' + wechat);
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // 复制备用微信号功能
+        function copyBackupWechat() {
+            var wechat = 'xiaoyucq888';
+            var tempInput = document.createElement('input');
+            tempInput.value = wechat;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
+            try {
+                document.execCommand('copy');
+                alert('✅ 备用微信号已复制: ' + wechat);
+            } catch (err) {
+                alert('❌ 复制失败，请手动复制: ' + wechat);
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // 初始化动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in-up');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+    </script>
+</body>
+</html>
